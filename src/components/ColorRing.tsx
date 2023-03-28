@@ -6,11 +6,12 @@ interface ColorRingProps {
     onClick: (color: string) => void;
 }
 
-const ColorRing: React.FC<ColorRingProps> = ({color, size, onClick }) => {
+const ColorRing: React.FC<ColorRingProps> = ({ color, size, onClick }) => {
+
     return (
-        <div className={`rounded-full bg-${color} hover:drop-shadow-[0_0_5px_rgba(0,0,0,1)]`}
-        style={{width: size, height: size}}
-        onClick={() => onClick(color)}
+        <div className={`hover:drop-shadow-[0_0_2px_rgba(255,255,255,1)]`}
+            style={{ width: size, height: size, backgroundColor: color }}
+            onClick={() => onClick(color)}
         />
     );
 };

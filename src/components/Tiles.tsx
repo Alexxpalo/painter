@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 interface TileProps {
     width: number;
     height: number;
+    tileSize: number;
     color: string;
 }
 
-const Tile: React.FC<TileProps> = ({width, height, color}) => {
+const Tile: React.FC<TileProps> = ({ width, height, tileSize, color }) => {
 
     const [tileArray, setTileArray] = useState(new Array(width * height).fill('white'));
 
@@ -15,15 +16,16 @@ const Tile: React.FC<TileProps> = ({width, height, color}) => {
             const newArray = [...prev];
             newArray[index] = color;
             return newArray;
-            });
+        });
     };
 
     return (
-        <div className={`flex flex-wrap bg-slate-200`} style={{height: height*50, width: width*50}}>
+        <div className={`flex flex-wrap`} style={{ height: height * tileSize, width: width * tileSize }}>
             {tileArray.map((tile, index) => {
                 return (
-                    <div className={`bg-${tile}`} style={{width: 50, height: 50}} key={index} onClick={() => paintTile(index)}/>
-                );})}
+                    <div className={`hover:border hover:border-black`} style={{ width: tileSize, height: tileSize, backgroundColor: tile }} key={index} onClick={() => paintTile(index)} />
+                );
+            })}
         </div>
     );
 };
